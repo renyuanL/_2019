@@ -1,0 +1,865 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{ryProb01}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \section{Poker Hands Probability}\label{poker-hands-probability}
+
+\$ 4 \choose 1 \$
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}1}]:} \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}2}]:} \PY{k+kn}{from} \PY{n+nn}{scipy}\PY{n+nn}{.}\PY{n+nn}{special} \PY{k}{import} \PY{n}{comb}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}3}]:} \PY{n}{comb}\PY{p}{(}\PY{l+m+mi}{4}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{,} \PY{n}{comb}\PY{p}{(}\PY{l+m+mi}{4}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,}\PY{k+kc}{True}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}3}]:} (4.0, 4)
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}4}]:} \PY{c+c1}{\PYZsh{}help(comb)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}5}]:} \PY{c+c1}{\PYZsh{}COMBIN= comb}
+        \PY{k}{def} \PY{n+nf}{COMBIN}\PY{p}{(}\PY{n}{n}\PY{p}{,}\PY{n}{k}\PY{p}{)}\PY{p}{:}
+            \PY{k}{return} \PY{n}{comb}\PY{p}{(}\PY{n}{n}\PY{p}{,}\PY{n}{k}\PY{p}{,}\PY{k+kc}{True}\PY{p}{)}
+        \PY{n}{nchk}\PY{o}{=} \PY{n}{COMBIN}
+        
+        \PY{n}{x}\PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{)}
+        
+        \PY{n}{x}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{=} \PY{n}{COMBIN}\PY{p}{(}\PY{l+m+mi}{4}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}
+        \PY{n}{x}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{=} \PY{n}{COMBIN}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}\PY{o}{*}\PY{n}{COMBIN}\PY{p}{(}\PY{l+m+mi}{4}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}\PY{o}{\PYZhy{}}\PY{n}{COMBIN}\PY{p}{(}\PY{l+m+mi}{4}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}
+        \PY{n}{x}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{o}{=} \PY{n}{COMBIN}\PY{p}{(}\PY{l+m+mi}{13}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}\PY{o}{*}\PY{n}{COMBIN}\PY{p}{(}\PY{l+m+mi}{12}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}\PY{o}{*}\PY{n}{COMBIN}\PY{p}{(}\PY{l+m+mi}{4}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}
+        \PY{n}{x}\PY{p}{[}\PY{l+m+mi}{3}\PY{p}{]}\PY{o}{=} \PY{n}{COMBIN}\PY{p}{(}\PY{l+m+mi}{13}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}\PY{o}{*}\PY{n}{COMBIN}\PY{p}{(}\PY{l+m+mi}{4}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{)}\PY{o}{*}\PY{n}{COMBIN}\PY{p}{(}\PY{l+m+mi}{12}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}\PY{o}{*}\PY{n}{COMBIN}\PY{p}{(}\PY{l+m+mi}{4}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{)}
+        \PY{n}{x}\PY{p}{[}\PY{l+m+mi}{4}\PY{p}{]}\PY{o}{=} \PY{n}{COMBIN}\PY{p}{(}\PY{l+m+mi}{13}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{)}\PY{o}{*}\PY{n}{COMBIN}\PY{p}{(}\PY{l+m+mi}{4}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}\PY{o}{\PYZhy{}}\PY{n}{COMBIN}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}\PY{o}{*}\PY{n}{COMBIN}\PY{p}{(}\PY{l+m+mi}{4}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}
+        \PY{n}{x}\PY{p}{[}\PY{l+m+mi}{5}\PY{p}{]}\PY{o}{=} \PY{n}{COMBIN}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}\PY{o}{*}\PY{n}{COMBIN}\PY{p}{(}\PY{l+m+mi}{4}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{5}\PY{o}{\PYZhy{}}\PY{n}{COMBIN}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}\PY{o}{*}\PY{n}{COMBIN}\PY{p}{(}\PY{l+m+mi}{4}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}
+        \PY{n}{x}\PY{p}{[}\PY{l+m+mi}{6}\PY{p}{]}\PY{o}{=} \PY{n}{COMBIN}\PY{p}{(}\PY{l+m+mi}{13}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}\PY{o}{*}\PY{n}{COMBIN}\PY{p}{(}\PY{l+m+mi}{4}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{)}\PY{o}{*}\PY{n}{COMBIN}\PY{p}{(}\PY{l+m+mi}{12}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{)}\PY{o}{*}\PY{n}{COMBIN}\PY{p}{(}\PY{l+m+mi}{4}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}
+        \PY{n}{x}\PY{p}{[}\PY{l+m+mi}{7}\PY{p}{]}\PY{o}{=} \PY{n}{COMBIN}\PY{p}{(}\PY{l+m+mi}{13}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{)}\PY{o}{*}\PY{n}{COMBIN}\PY{p}{(}\PY{l+m+mi}{4}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{COMBIN}\PY{p}{(}\PY{l+m+mi}{11}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}\PY{o}{*}\PY{n}{COMBIN}\PY{p}{(}\PY{l+m+mi}{4}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}
+        \PY{n}{x}\PY{p}{[}\PY{l+m+mi}{8}\PY{p}{]}\PY{o}{=} \PY{n}{COMBIN}\PY{p}{(}\PY{l+m+mi}{13}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}\PY{o}{*}\PY{n}{COMBIN}\PY{p}{(}\PY{l+m+mi}{4}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{)}\PY{o}{*}\PY{n}{COMBIN}\PY{p}{(}\PY{l+m+mi}{12}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{)}\PY{o}{*}\PY{n}{COMBIN}\PY{p}{(}\PY{l+m+mi}{4}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{3}
+        \PY{n}{x}\PY{p}{[}\PY{l+m+mi}{9}\PY{p}{]}\PY{o}{=} \PY{p}{(}\PY{n}{COMBIN}\PY{p}{(}\PY{l+m+mi}{13}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{)}\PY{o}{\PYZhy{}}\PY{l+m+mi}{10}\PY{p}{)}\PY{o}{*}\PY{p}{(}\PY{n}{COMBIN}\PY{p}{(}\PY{l+m+mi}{4}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{5}\PY{o}{\PYZhy{}}\PY{l+m+mi}{4}\PY{p}{)}
+        \PY{n}{x}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}5}]:} array([  4.00000000e+00,   3.60000000e+01,   6.24000000e+02,
+                 3.74400000e+03,   5.10800000e+03,   1.02000000e+04,
+                 5.49120000e+04,   1.23552000e+05,   1.09824000e+06,
+                 1.30254000e+06])
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}6}]:} \PY{n}{x}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}6}]:} array([  4.00000000e+00,   3.60000000e+01,   6.24000000e+02,
+                 3.74400000e+03,   5.10800000e+03,   1.02000000e+04,
+                 5.49120000e+04,   1.23552000e+05,   1.09824000e+06,
+                 1.30254000e+06])
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}7}]:} \PY{n}{Px}\PY{o}{=} \PY{n}{x}\PY{o}{/}\PY{n}{x}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{p}{)}
+        \PY{n}{Px}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}7}]:} array([  1.53907717e-06,   1.38516945e-05,   2.40096038e-04,
+                 1.44057623e-03,   1.96540155e-03,   3.92464678e-03,
+                 2.11284514e-02,   4.75390156e-02,   4.22569028e-01,
+                 5.01177394e-01])
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}8}]:} \PY{k+kn}{import} \PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{pyplot} \PY{k}{as} \PY{n+nn}{plt}
+        \PY{o}{\PYZpc{}}\PY{k}{matplotlib} inline
+        
+        \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{stem}\PY{p}{(}\PY{n}{Px}\PY{p}{)}
+        
+        
+        \PY{n}{logPx}\PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{log10}\PY{p}{(}\PY{n}{Px}\PY{p}{)}
+        
+        \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{stem}\PY{p}{(}\PY{n}{logPx}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}8}]:} <StemContainer object of 3 artists>
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_8_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_8_2.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \subsection{Writing Mathematic Fomulars in
+Markdown}\label{writing-mathematic-fomulars-in-markdown}
+
+https://csrgxtu.github.io/2015/03/20/Writing-Mathematic-Fomulars-in-Markdown/
+
+\$ \alpha \beta \gamma \delta \$
+
+\$ a\^{}2 a\_2 \$
+
+同花順：花色有4種，牌面從A2345到10JQKA有十個順子。共有40種。 計算： \$
+\{\displaystyle {4 \choose 1}{10 \choose 1}=4\{\times \}10=40\} \{4
+\choose 1\}\{10 \choose 1\}=4\{\times \}10=40 \$
+
+機率： \$
+\{\displaystyle P=\{\frac {40}{2598960}\}=1.539\{\times \}10\^{}\{-5\}\}
+P=\{\frac  {40}{2598960}\}=1.539\{\times \}10\^{}\{\{-5\}\} \$
+
+四條：牌面有13選一為4條，另外從剩餘48選一。共有624種情況。 計算： \$
+\{\displaystyle {13 \choose 1}{48 \choose 1}=13\{\times \}48=624\} \{13
+\choose 1\}\{48 \choose 1\}=13\{\times \}48=624 \$
+
+機率： \$
+\{\displaystyle P=\{\frac {624}{2598960}\}=2.401\{\times \}10\^{}\{-4\}\}
+P=\{\frac  {624}{2598960}\}=2.401\{\times \}10\^{}\{\{-4\}\} \$
+
+葫蘆：牌面有13選一為3條，花色4選3；剩餘牌面12選一為對，花色4選2。共有3744種情況。
+
+計算： \$
+\{\displaystyle {13 \choose 1}{4 \choose 3}{\times }{12 \choose 1}{4 \choose 2}=13\{\times \}4\{\times \}12\{\times \}6=3744\}
+\{13 \choose 1\}\{4 \choose 3\}\{\times \}\{12 \choose 1\}\{4
+\choose 2\}=13\{\times \}4\{\times \}12\{\times \}6=3744 \$
+
+機率： \$
+\{\displaystyle P=\{\frac {3744}{2598960}\}=1.44058\{\times \}10\^{}\{-3\}\}
+P=\{\frac  {3744}{2598960}\}=1.44058\{\times \}10\^{}\{\{-3\}\} \$
+
+    https://zh.wikipedia.org/wiki/\%E6\%92\%B2\%E5\%85\%8B\%E7\%89\%8C\%E5\%9E\%8B
+撲克牌型
+
+    https://zh.wikipedia.org/wiki/Help:\%E6\%95\%B0\%E5\%AD\%A6\%E5\%85\%AC\%E5\%BC\%8F
+
+\{ \}, \O \empty \emptyset, \varnothing 
+
+\$ \{ \}, \O \empty \emptyset, \varnothing \$
+
+\in, \notin \not\in, \ni, \not\ni
+
+\$ \in, \notin \not\in, \ni, \not\ni \$
+
+    \diamondsuit, \heartsuit, \clubsuit, \spadesuit, \Game, \flat, \natural,
+\sharp
+
+\$ \diamondsuit, \heartsuit, \clubsuit, \spadesuit, \Game, \flat,
+\natural, \sharp
+\$
+
+\dbinom{n}{r}=\binom{n}{n-r}=\mathrm{C}\_n\^{}r=\mathrm{C}\_n\^{}\{n-r\}
+
+\$
+\dbinom{n}{r}=\binom{n}{n-r}=\mathrm{C}\_n\^{}r=\mathrm{C}\_n\^{}\{n-r\}
+\$
+
+\$ \dbinom{n}{r}\textbackslash{} =\binom{n}{n-r}\textbackslash{}
+=\mathrm{C}\_n\^{}r\textbackslash{} =\mathrm{C}\_n\^{}\{n-r\} \$
+
+\begin{bmatrix}
+0      & \cdots & 0      \\
+\vdots & \ddots & \vdots \\
+0      & \cdots & 0
+\end{bmatrix}
+
+\$
+
+\begin{bmatrix}
+0      & \cdots & 0      \\
+\vdots & \ddots & \vdots \\
+0      & \cdots & 0
+\end{bmatrix}
+
+\$
+
+\begin{array}{|c|c||c|} a & b & S \\
+\hline
+0&0&1\\
+0&1&1\\
+1&0&1\\
+1&1&0\\
+\end{array}
+
+\$
+
+\begin{array}{|c|c||c|} a & b & S \\
+\hline
+0&0&1\\
+0&1&1\\
+1&0&1\\
+1&1&0\\
+\end{array}
+
+\$
+
+\{\color{色調}表達式\}
+
+\$ \{\color {red} 表達式\} \$
+
+\{\color{Blue}x\^{}2\}+\{\color{Brown}2x\} - \{\color{OliveGreen}1\}
+
+\$ \{\color{Blue}x\^{}2\}+\{\color{Brown}2x\} - \{\color{OliveGreen}1\}
+\$
+
+\$ \color{Blue}{x^2}+\{\color{Brown}{2x}\} - \{\color{OliveGreen}1\} \$
+
+x\_\{\color{Green}1,2\}=\frac{-b\pm\sqrt{{\color{Maroon}b^2-4ac}}}{2a}
+
+\$ x\_\{\color{Blue}1,2\}=\frac{-b\pm\sqrt{{\color{Maroon}b^2-4ac}}}{2a}
+\$
+
+    \$
+
+\begin{array}
+{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|} 
+\ & 2 & 3 & 4  & 5  & 6  & 7  & 8  & 9  & 10  & J  & Q  & K & A  \\
+\hline
+\spadesuit &  &  &   &   &   &   &   &   &   &   &   &  &   \\
+\hline
+\heartsuit &  &  &   &   &   &   &   &   &   &   &   &  &   \\
+\hline
+\clubsuit &  &  &   &   &   &   &   &   &   &   &   &  &   \\
+\hline
+\diamondsuit &  &  &   &   &   &   &   &   &   &   &   &  &   \\
+\hline
+\end{array}
+
+\$
+
+\$
+
+\begin{array}
+{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|} 
+\
+\ & 2 & 3 & 4  & 5  & 6  & 7  & 8  & 9  & 10  & J  & Q  & K & A  \\
+\hline
+\
+\spadesuit & \spadesuit2 & \spadesuit3 & \spadesuit4  
+& \spadesuit5  & \spadesuit6  & \spadesuit7  & \spadesuit8  & \spadesuit9  
+& \spadesuit10  & \spadesuit J  & \spadesuit Q  & \spadesuit K & \spadesuit A  \\
+\hline
+\
+\heartsuit & \heartsuit2 & \heartsuit3 & \heartsuit4  
+& \heartsuit5  & \heartsuit6  & \heartsuit7  & \heartsuit8  & \heartsuit9  
+& \heartsuit10  & \heartsuit J  & \heartsuit Q  & \heartsuit K & \heartsuit A  \\
+\hline
+\
+\clubsuit & \clubsuit 2 & \clubsuit 3 & \clubsuit 4  
+& \clubsuit 5  & \clubsuit 6  & \clubsuit 7  & \clubsuit 8  & \clubsuit 9  
+& \clubsuit 10  & \clubsuit J  & \clubsuit Q  & \clubsuit K & \clubsuit A  \\
+\hline
+\
+\diamondsuit & \diamondsuit 2 & \diamondsuit 3 & \diamondsuit 4  
+& \diamondsuit 5  & \diamondsuit 6  & \diamondsuit 7  & \diamondsuit 8  & \diamondsuit 9  
+& \diamondsuit 10  & \diamondsuit J  & \diamondsuit Q  & \diamondsuit K & \diamondsuit A  \\
+\hline
+\end{array}
+
+\$
+
+\$ 花順\textbackslash{} 4條\textbackslash{} 3條2條\textbackslash{}
+花(無順)\textbackslash{} 順(無花)\textbackslash{} 3條\textbackslash{}
+双2條\textbackslash{} 2條\textbackslash{} 1條\textbackslash{} \$
+
+\$
+
+\begin{array}
+{|c|c|c|} 
+\hline
+rank01 & 花順     & 40\\
+rank02 & 4條      & 624\\
+rank03 & 3條+2條  & 3,744\\
+rank04 & 花(無順) & 5,108 \\
+rank05 & 順(無花) & 10,200 \\
+rank06 & 3條      & 54,912\\
+rank07 & 2條+2條  & 123,552\\
+rank08 & 2條      & 1,098,240\\
+rank09 & 1條      & 1,302,540\\
+\hline
+\  & 全部     & 2,598,960\\
+\hline
+\end{array}
+
+\$
+
+    所有五張牌的組合，按以下順序，由大至小排列分為不同牌型：
+
+\begin{longtable}[]{@{}lllll@{}}
+\toprule
+牌型(別名) & 英文名 & 範例 & 說明\tabularnewline
+\midrule
+\endhead
+同花順數 & 同花順 & Straight Flush & 2♠ 3♠ 4♠ 5♠ 6♠ &
+五張同一花色且順連的牌。\tabularnewline
+4條 & 四條(鐵扇，鐵支) & 4 of a Kind & 2♠ 2♥ 2♣ 2♦ 3♥ &
+有四張同一點數的牌。\tabularnewline
+3條+2條 & 葫蘆(夫佬) & Full house & 2♠ 2♣ 2♦ 3♠ 3♥ &
+三張同一點數的牌，加一對其他點數的牌。\tabularnewline
+同花(無順數) & 同花(花) & Flush & 2♠ 3♠ 4♠ 5♠ 7♠ &
+五張同一花色的牌。\tabularnewline
+順數(無同花) & 順子(蛇) & Straight & 2♠ 3♠ 4♠ 5♠ 6♦ &
+五張順連的牌。\tabularnewline
+3條 & 三條 & 3 of a kind & 2♠ 2♣ 2♦ 3♠ 4♥ &
+有三張同一點數的牌。\tabularnewline
+2條+2條 & 兩對(Two 啤，滔啤) & 2 Pairs & 2♠ 2♣ 3♠ 3♥ 4♦ &
+有兩張相同點數的牌，加另外兩張相同點數的牌。\tabularnewline
+2條 & 一對(啤) & 1 Pair & 2♠ 2♣ 3♠ 4♥ 5♦ &
+有兩張相同點數的牌。\tabularnewline
+1條 & 散牌(高牌，烏龍) & High card & 2♠ 3♠ 4♥ 5♦ 7♣ &
+不能排成以上組合的牌，以點數決定大小。\tabularnewline
+\bottomrule
+\end{longtable}
+
+    除去鬼牌後剩52張牌，點數為2-3-4-5-6-7-8-9-10-J-Q-K-A，
+花色為黑桃、紅心、梅花、方塊。 總共有52張，
+從中選5張，則形成2598960種情況。
+
+計算： \$ \{\displaystyle C\_\{5\}\^{}\{52\}=\{52
+\choose 5\}=\{\frac {52!}{5!47!}\}=\{\frac {52{\times }51{\times }50{\times }49{\times }48}{5{\times }4{\times }3{\times }2{\times }1}\}=2598960\}
+\textbackslash{} \$
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}9}]:} \PY{n}{nS}\PY{o}{=} \PY{n}{comb}\PY{p}{(}\PY{l+m+mi}{52}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{,}\PY{k+kc}{True}\PY{p}{)}
+        \PY{n}{nS}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}9}]:} 2598960
+\end{Verbatim}
+            
+    同花順：花色有4種，牌面從A2345到10JQKA有十個順子。共有40種。
+
+計算： \$
+\{\displaystyle {4 \choose 1}{10 \choose 1}=4\{\times \}10=40\} \$
+
+機率： \$
+\{\displaystyle P=\{\frac {40}{2598960}\}=1.539\{\times \}10\^{}\{-5\}\}
+\$
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}10}]:} \PY{n}{nA1}\PY{o}{=} \PY{n}{nchk}\PY{p}{(}\PY{l+m+mi}{4}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}\PY{o}{*}\PY{n}{nchk}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}
+         \PY{n}{nA1}\PY{p}{,} \PY{n}{nA1}\PY{o}{/}\PY{n}{nS}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}10}]:} (40, 1.5390771693292702e-05)
+\end{Verbatim}
+            
+    四條：牌面有13選一為4條，另外從剩餘48選一。共有624種情況。
+
+計算： \$
+\{\displaystyle {13 \choose 1}{48 \choose 1}=13\{\times \}48=624\} \$
+
+機率： \$
+\{\displaystyle P=\{\frac {624}{2598960}\}=2.401\{\times \}10\^{}\{-4\}\}
+\$
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}11}]:} \PY{n}{nA2}\PY{o}{=} \PY{n}{nchk}\PY{p}{(}\PY{l+m+mi}{13}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}\PY{o}{*}\PY{n}{nchk}\PY{p}{(}\PY{l+m+mi}{48}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}
+         \PY{n}{nA2}\PY{p}{,} \PY{n}{nA2}\PY{o}{/}\PY{n}{nS}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}11}]:} (624, 0.00024009603841536616)
+\end{Verbatim}
+            
+    葫蘆：牌面有13選一為3條，花色4選3；剩餘牌面12選一為對，花色4選2。共有3744種情況。
+
+計算： \$
+\{\displaystyle {13 \choose 1}{4 \choose 3}{\times }{12 \choose 1}{4 \choose 2}=13\{\times \}4\{\times \}12\{\times \}6=3744\}
+\$
+
+機率： \$
+\{\displaystyle P=\{\frac {3744}{2598960}\}=1.44058\{\times \}10\^{}\{-3\}\}
+\$
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}12}]:} \PY{n}{nA3}\PY{o}{=} \PY{n}{nchk}\PY{p}{(}\PY{l+m+mi}{13}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}\PY{o}{*}\PY{n}{nchk}\PY{p}{(}\PY{l+m+mi}{4}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{)}\PY{o}{*}\PY{n}{nchk}\PY{p}{(}\PY{l+m+mi}{12}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}\PY{o}{*}\PY{n}{nchk}\PY{p}{(}\PY{l+m+mi}{4}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{)}
+         \PY{n}{nA3}\PY{p}{,} \PY{n}{nA3}\PY{o}{/}\PY{n}{nS}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}12}]:} (3744, 0.0014405762304921968)
+\end{Verbatim}
+            
+    同花：花色4種，牌面13選5，再減去順子10種。共有5108種。
+
+計算： \$ \{\displaystyle {4 \choose 1}{\times }(\{13 \choose 5\}-\{10
+\choose 1\})=4\{\times \}\{(\{\frac {13{\times }12{\times }11{\times }10{\times }9}{5{\times }4{\times }3{\times }2{\times }1}\}-10)\}=5108\}
+\$
+
+機率： \$
+\{\displaystyle P=\{\frac {5108}{2598960}\}=1.9654\{\times \}10\^{}\{-3\}\}
+\$
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}13}]:} \PY{n}{nA4}\PY{o}{=} \PY{n}{nchk}\PY{p}{(}\PY{l+m+mi}{4}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}\PY{o}{*} \PY{p}{(}\PY{n}{nchk}\PY{p}{(}\PY{l+m+mi}{13}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{)}\PY{o}{\PYZhy{}}\PY{n}{nchk}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}
+         \PY{n}{nA4}\PY{p}{,} \PY{n}{nA4}\PY{o}{/}\PY{n}{nS}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}13}]:} (5108, 0.001965401545233478)
+\end{Verbatim}
+            
+    順子：牌面從A2345到10JQKA有十個順子，花色45減去同花4種。共有10200種。
+
+計算： \$
+\{\displaystyle {10 \choose 1}{\times }(4\^{}\{5\}-4)=10\{\times \}(1024-4)=10200\}
+\$
+
+機率： \$
+\{\displaystyle P=\{\frac {10200}{2598960}\}=3.92465\{\times \}10\^{}\{-3\}\}
+\$
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}14}]:} \PY{n}{nA5}\PY{o}{=} \PY{n}{nchk}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}\PY{o}{*} \PY{p}{(}\PY{l+m+mi}{4}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{5} \PY{o}{\PYZhy{}} \PY{l+m+mi}{4}\PY{p}{)}
+         \PY{n}{nA5}\PY{p}{,} \PY{n}{nA5}\PY{o}{/}\PY{n}{nS}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}14}]:} (10200, 0.003924646781789639)
+\end{Verbatim}
+            
+    三條：牌面有13選一種為3條，花色4選3；剩餘牌面12選2為單牌，花色都有4種可能。共有54912種情況。
+
+計算： \$
+\{\displaystyle {13 \choose 1}{4 \choose 3}{\times }{12 \choose 2}{4 \choose 1}\^{}\{2\}=54912\}
+\$
+
+機率： \$ \{\displaystyle P=\{\frac  {54912}{2598960}\}=0.02112845\} \$
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}15}]:} \PY{n}{nA6}\PY{o}{=} \PY{n}{nchk}\PY{p}{(}\PY{l+m+mi}{13}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}\PY{o}{*}\PY{n}{nchk}\PY{p}{(}\PY{l+m+mi}{4}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{)}\PY{o}{*}\PY{n}{nchk}\PY{p}{(}\PY{l+m+mi}{12}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{)}\PY{o}{*}\PY{n}{nchk}\PY{p}{(}\PY{l+m+mi}{4}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}
+         \PY{n}{nA6}\PY{p}{,} \PY{n}{nA6}\PY{o}{/}\PY{n}{nS}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}15}]:} (54912, 0.02112845138055222)
+\end{Verbatim}
+            
+    兩對：牌面有13選2為對子，花色都是4選2；另外一張只要在其餘11選一，花色有4種。共有123552情況。
+
+計算： \$
+\{\displaystyle {13 \choose 2}{4 \choose 2}\^{}\{2\}\{\times \}\{11
+\choose 1\}\{4 \choose 1\}=123552\} \$
+
+機率： \$ \{\displaystyle P=\{\frac  {123552}{2598960}\}=0.04753902\} \$
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}16}]:} \PY{n}{nA7}\PY{o}{=} \PY{n}{nchk}\PY{p}{(}\PY{l+m+mi}{13}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{)} \PY{o}{*} \PY{n}{nchk}\PY{p}{(}\PY{l+m+mi}{4}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2} \PY{o}{*} \PY{n}{nchk}\PY{p}{(}\PY{l+m+mi}{11}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)} \PY{o}{*} \PY{n}{nchk}\PY{p}{(}\PY{l+m+mi}{4}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}
+         \PY{n}{nA7}\PY{p}{,} \PY{n}{nA7}\PY{o}{/}\PY{n}{nS}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}16}]:} (123552, 0.0475390156062425)
+\end{Verbatim}
+            
+    一對：牌面有13選一為對，花色4選2；另外從剩餘12選3，花色都有4種。共有1098240種情況。
+
+計算： \$
+\{\displaystyle {13 \choose 1}{4 \choose 2}{\times }{12 \choose 3}{4 \choose 1}\^{}\{3\}=13\{\times \}6\{\times \}220\{\times \}64=1098240\}
+\$
+
+機率： \$ \{\displaystyle P=\{\frac  {1098240}{2598960}\}=0.42256903\}
+\$
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}17}]:} \PY{n}{nA8}\PY{o}{=} \PY{n}{nchk}\PY{p}{(}\PY{l+m+mi}{13}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}\PY{o}{*}\PY{n}{nchk}\PY{p}{(}\PY{l+m+mi}{4}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{)}\PY{o}{*}\PY{n}{nchk}\PY{p}{(}\PY{l+m+mi}{12}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{)}\PY{o}{*}\PY{n}{nchk}\PY{p}{(}\PY{l+m+mi}{4}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{3}
+         \PY{n}{nA8}\PY{p}{,} \PY{n}{nA8}\PY{o}{/}\PY{n}{nS}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}17}]:} (1098240, 0.4225690276110444)
+\end{Verbatim}
+            
+    散牌：牌面13選5減去順子10種；花色45減去同花4種。共有1302540種情況
+
+計算： \$ \{\displaystyle (\{13 \choose 5\}-\{10
+\choose 1\})(4\^{}\{5\}-4)=(1287-10)\{\times \}(1024-4)=1302540\} \$
+
+機率： \$ \{\displaystyle P=\{\frac  {1302540}{2598960}\}=0.50117739\}
+\$
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}18}]:} \PY{n}{nA9}\PY{o}{=} \PY{p}{(}\PY{n}{nchk}\PY{p}{(}\PY{l+m+mi}{13}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{)}\PY{o}{\PYZhy{}}\PY{n}{nchk}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}\PY{o}{*}\PY{p}{(}\PY{l+m+mi}{4}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{5}\PY{o}{\PYZhy{}}\PY{l+m+mi}{4}\PY{p}{)}
+         \PY{n}{nA9}\PY{p}{,} \PY{n}{nA9}\PY{o}{/}\PY{n}{nS}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}18}]:} (1302540, 0.5011773940345369)
+\end{Verbatim}
+            
+    所有情況總數： \$
+\{\displaystyle 40+624+3744+5108+10200+54912+123552+1098240+1302540=2598960\}
+\$
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}19}]:} \PY{n}{nA\PYZus{}total}\PY{o}{=} \PY{n}{nA1} \PY{o}{+}\PY{n}{nA2} \PY{o}{+}\PY{n}{nA3} \PY{o}{+}\PY{n}{nA4} \PY{o}{+}\PY{n}{nA5} \PY{o}{+}\PY{n}{nA6} \PY{o}{+}\PY{n}{nA7} \PY{o}{+}\PY{n}{nA8} \PY{o}{+}\PY{n}{nA9}
+         \PY{n}{nA\PYZus{}total}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}19}]:} 2598960
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}20}]:} \PY{n}{pA}\PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{l+m+mi}{9}\PY{p}{)}
+         \PY{n}{pA}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}20}]:} array([ 0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.])
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}21}]:} \PY{n}{pA}\PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{n}{nA1}\PY{p}{,} \PY{n}{nA2}\PY{p}{,} \PY{n}{nA3}\PY{p}{,} \PY{n}{nA4}\PY{p}{,} \PY{n}{nA5}\PY{p}{,} \PY{n}{nA6}\PY{p}{,} \PY{n}{nA7}\PY{p}{,} \PY{n}{nA8}\PY{p}{,} \PY{n}{nA9}\PY{p}{]}\PY{p}{)}\PY{o}{/}\PY{n}{nS}
+         \PY{n}{pA}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}21}]:} array([  1.53907717e-05,   2.40096038e-04,   1.44057623e-03,
+                  1.96540155e-03,   3.92464678e-03,   2.11284514e-02,
+                  4.75390156e-02,   4.22569028e-01,   5.01177394e-01])
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}22}]:} \PY{n}{plt}\PY{o}{.}\PY{n}{stem}\PY{p}{(}\PY{n}{pA}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{grid}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_39_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}23}]:} \PY{n}{plt}\PY{o}{.}\PY{n}{stem}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{log10}\PY{p}{(}\PY{n}{pA}\PY{p}{)}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{grid}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_40_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}

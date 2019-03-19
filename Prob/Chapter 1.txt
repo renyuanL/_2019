@@ -1,0 +1,188 @@
+Chapter 1
+Introduction 
+to Statistics
+and Data Analysis
+
+1.1 Overview: 
+Statistical Inference, 
+Samples, 
+Populations,
+and the Role of Probability
+
+
+.1 Use of Scientific Data
+
+.2 Variability in Scientific Data
+
+.3 The Role of Probability
+
+.4 How Do Probability and Statistical Inference Work Together?
+
+
+ryExample:
+==========
+若某人有一枚硬幣，宣稱說：
+「它是公平的硬幣，
+亦即擲出硬幣後，
+出現正面及反面的機率p=q=0.5」
+
+你有機會對該枚硬幣做一回實驗，
+你擲了10次，得到4次正面，
+能相信某人的宣稱嗎？
+
+如果擲了10次，
+只得到1次正面，
+能相信某人的宣稱嗎？
+
+又如果擲了100次，
+得到40次正面，能信他的宣稱嗎？
+得到45次正面的話，能信他的宣稱嗎？
+
+----------------------------------
+H= 'p == 0.5'
+E= 'n=10, X<=4'
+
+採取 alpha== .0500 
+為【「罕見」，視同「不可能」的機率「上限值」】
+
+P(E|H) =....= .3770 
+
+推論過程：
+因為 P(=.3770) > alpha(=.0500)
+所以 E 不能說是「罕見」，
+就是說 若 【H 正確】，
+E 是可能發生的，
+今天我們觀察到E發生，
+是很正常的。
+
+----------------------------------
+H= 'p == 0.5'
+E= 'n=10, X<=1'
+
+P(E|H) =....= .0107
+
+推論過程：
+--------
+
+因為 P(=.0107) < alpha(=.0500)
+所以 E 可說是罕見，
+就是說 
+若 【H 正確】，
+E 是罕見的，
+其機率P小於預定的「罕見機率」的臨界值alpha，
+於是大家同意 E 視同【不可能發生】。
+
+然而，
+今天我們卻觀察到E發生，
+這樣就產生「矛盾」。
+從邏輯的觀點來看，
+若前提H為【真】導致【矛盾的結論】，
+則前提H【不為真】
+
+所以， 結論是 " H(= 'p==0.5') 不為真，不能接受！"
+
+導致這個結論的核心理由就是 
+
+"P(=.0107) < alpha(=.0500, 一個常見的公認值)"
+
+--------------------------------------
+
+
+Example 1.1: 
+
+Suppose that an engineer encounters data from a manufacturing process in which 100 items are sampled and 10 are found to be defective. 
+
+It is expected and anticipated that occasionally there will be defective items. 
+
+Obviously these 100 items represent the sample. 
+-------------
+
+However, it has been determined that in the long run, the company can only tolerate 5% defective in the process. 
+
+Now, the elements of probability allow the engineer to determine how conclusive the sample information is regarding the nature of the process. 
+
+In this case, the population conceptually represents all possible items from the process. 
+
+Suppose we learn that if the process is acceptable, that is, if it does produce items no more than 5% of which are defective, there is a probability of 0.0282 of obtaining 10 or more defective items in a random sample of 100 items from the process. 
+
+This small probability suggests that the process does, indeed, have a long-run rate of defective items that exceeds 5%. 
+
+In other words, under the condition of an acceptable process, the sample information obtained would rarely occur. 
+
+However, it did occur! 
+
+Clearly, though, it would occur with a much higher probability if the process defective rate exceeded 5% by a significant amount.
+
+From this example it becomes clear that the elements of probability aid in the translation of sample information into something conclusive or inconclusive about the scientific system. 
+
+In fact, what was learned likely is alarming information to the engineer or manager. 
+
+Statistical methods, which we will actually detail in Chapter 10, produced a P-value of 0.0282. 
+
+The result suggests that the process very likely is not acceptable. 
+
+The concept of a P-value is dealt with at length in succeeding chapters. 
+
+The example that follows provides a second illustration.
+
+============================
+
+Example 1.2: 
+
+Often the nature of the scientific study will dictate the role that probability and deductive reasoning play in statistical inference. 
+
+Exercise 9.40 on page 294 provides data associated with a study conducted at the Virginia Polytechnic Institute and State University on the development of a relationship between the roots of trees and the action of a fungus. 
+
+Minerals are transferred from the fungus to the trees and sugars from the trees to the fungus. 
+
+Two samples of 10 northern red oak seedlings were planted in a greenhouse, one containing seedlings treated with nitrogen and the other containing seedlings with no nitrogen. 
+
+All other environmental conditions were held constant. 
+
+All seedlings contained the fungus Pisolithus tinctorus. 
+
+More details are supplied in Chapter 9. 
+
+The stem weights in grams were recorded after the end of 140 days. 
+
+The data are given in Table 1.1.
+
+<Table 1.1>
+<Figure 1.1>
+<Figure 1.2>
+
+In this example there are two samples from two separate populations. 
+
+The purpose of the experiment is to determine if the use of nitrogen has an influence on the growth of the roots. 
+
+The study is a comparative study (i.e., we seek to compare the two populations with regard to a certain important characteristic). 
+
+It is instructive to plot the data as shown in the dot plot of Figure 1.1. 
+
+The ◦ values represent the “nitrogen” data and the × values represent the “no-nitrogen” data. 
+
+Notice that the general appearance of the data might suggest to the reader that, on average, the use of nitrogen increases the stem weight. 
+
+Four nitrogen observations are considerably larger than any of the no-nitrogen observations. 
+
+Most of the no-nitrogen observations appear to be below the center of the data. 
+
+The appearance of the data set would seem to indicate that nitrogen is effective. 
+
+But how can this be quantified? 
+
+How can all of the apparent visual evidence be summarized in some sense? 
+
+As in the preceding example, the fundamentals of probability can be used. 
+
+The conclusions may be summarized in a probability statement or P-value. 
+
+We will not show here the statistical inference that produces the summary probability. 
+
+As in Example 1.1, these methods will be discussed in Chapter 10. 
+
+The issue revolves around the “probability that data like these could be observed” given that nitrogen has no effect, in other words, given that both samples were generated from the same population. 
+
+Suppose that this probability is small, say 0.03. 
+
+That would certainly be strong evidence that the use of nitrogen does indeed influence (apparently increases) average stem weight of the red oak seedlings.

@@ -1,0 +1,372 @@
+<c>
+<t>
+1
+Introduction
+</t>
+<a>
+[s00].	The fundamental purpose of speech is communication, i.e., the transmission of messages.
+[s01].	According to Shannon¡¦s information theory [116], a message represented as a sequence of discrete symbols can be quantified by its information content in bits, and the rate of transmission of information is measured in bits/second (bps).
+[s02].	In speech production, as well as in many human-engineered electronic communication systems, the information to be transmitted is encoded in the form of a continuously varying (analog) waveform that can be transmitted, recorded, manipulated, and ultimately decoded by a human listener.
+[s03].	In the case of speech, the fundamental analog form of the message is an acoustic waveform, which we call the speech signal.
+[s04].	Speech signals, as illustrated in Figure 1.1, can be converted to an electrical waveform by a microphone, further manipulated by both analog and digital signal processing, and then converted back to acoustic form by a loudspeaker, a telephone handset or headphone, as desired.
+[s05].	This form of speech processing is, of course, the basis for Bell¡¦s telephone invention as well as today¡¦s multitude of devices for recording, transmitting, and manipulating speech and audio signals.
+[s06].	Although Bell made his invention without knowing the fundamentals of information theory, these ideas have assumed great importance in the design of sophisticated modern communications systems.
+[s07].	Therefore, even though our main focus will be mostly on the speech waveform and its representation in the form of parametric models, it is nevertheless useful to begin with a discussion of how information is encoded in the speech waveform.
+[f11].	Fig 1.1 A speech waveform with phonetic labels for the text message ¡§Should we chase.¡¨
+</a>
+
+<s>
+1.1 The Speech Chain
+<p>
+[s00].	Figure 1.2 shows the complete process of producing and perceiving speech from the formulation of a message in the brain of a talker, to the creation of the speech signal, and finally to the understanding of the message by a listener.
+[s01].	In their classic introduction to speech science, Denes and Pinson aptly referred to this process as the ¡§speech chain¡¨ [29].
+[s02].	The process starts in the upper left as a message represented somehow in the brain of the speaker.
+[s03].	The message information can be thought of as having a number of different representations during the process of speech production (the upper path in Figure 1.2).
+[s04].	For example the message could be represented initially as English text.
+[s05].	In order to ¡§speak¡¨ the message, the talker implicitly converts the text into a symbolic representation of the sequence of sounds corresponding to the spoken version of the text.
+[s06].	This step, called the language code generator in Figure 1.2, converts text symbols to phonetic symbols (along with stress and durational information) that describe the basic sounds of a spoken version of the message and the manner (i.e., the speed and emphasis) in which the sounds are intended to be produced.
+[s07].	As an example, the segments of the waveform of Figure 1.1 are labeled with phonetic symbols using a computer-keyboard-friendly code called ARPAbet.1 Thus, the text ¡§should we chase¡¨ is represented phonetically (in ARPAbet symbols) as [SH UH D ¡X W IY ¡X CH EY S].
+[s08].	(See Chapter 2 for more discussion of phonetic transcription.) The third step in the speech production process is the conversion to ¡§neuro-muscular controls,¡¨ i.e., the set of control signals that direct the neuro-muscular system to move the speech articulators, namely the tongue, lips, teeth, jaw and velum, in a manner that is consistent with the sounds of the desired spoken message and with the desired degree of emphasis.
+[s09].	The end result of the neuro-muscular controls step is a set of articulatory motions (continuous control) that cause the vocal tract articulators to move in a prescribed manner in order to create the desired sounds.
+[s10].	Finally the last step in the Speech Production process is the ¡§vocal tract system¡¨ that physically creates the necessary sound sources and the appropriate vocal tract shapes over time so as to create an acoustic waveform, such as the one shown in Figure 1.1, that encodes the information in the desired message into the speech signal.
+</p>
+<p>
+[s00].	To determine the rate of information flow during speech production, assume that there are about 32 symbols (letters) in the language (in English there are 26 letters, but if we include simple punctuation we get a count closer to 32 = 25 symbols).
+[s01].	Furthermore, the rate of speaking for most people is about 10 symbols per second (somewhat on the high side, but still acceptable for a rough information rate estimate).
+[s02].	Hence, assuming independent letters as a simple approximation, we estimate the base information rate of the text message as about 50 bps (5 bits per symbol times 10 symbols per second).
+[s03].	At the second stage of the process, where the text representation is converted into phonemes and prosody (e.g., pitch and stress) markers, the information rate is estimated to increase by a factor of 4 to about 200 bps.
+[s04].	For example, the ARBAbet phonetic symbol set used to label the speech sounds in Figure 1.1 contains approximately 64 = 26 symbols, or about 6 bits/phoneme (again a rough approximation assuming independence of phonemes).
+[s05].	In Figure 1.1, there are 8 phonemes in approximately 600 ms.
+[s06].	This leads to an estimate of 8 ¡Ñ 6/0.6 = 80 bps.
+[s07].	Additional information required to describe prosodic features of the signal (e.g., duration, pitch, loudness) could easily add 100 bps to the total information rate for a message encoded as a speech signal.
+</p>
+<p>
+[s00].	The information representations for the first two stages in the speech chain are discrete so we can readily estimate the rate of information flow with some simple assumptions.
+[s01].	For the next stage in the speech production part of the speech chain, the representation becomes continuous (in the form of control signals for articulatory motion).
+[s02].	If they could be measured, we could estimate the spectral bandwidth of these  control signals and appropriately sample and quantize these signals to obtain equivalent digital signals for which the data rate could be estimated.
+[s03].	The articulators move relatively slowly compared to the time variation of the resulting acoustic waveform.
+[s04].	Estimates of bandwidth and required accuracy suggest that the total data rate of the sampled articulatory control signals is about 2000 bps [34].
+[s05].	Thus, the original text message is represented by a set of continuously varying signals whose digital representation requires a much higher data rate than the information rate that we estimated for transmission of the message as a speech signal.2 Finally, as we will see later, the data rate of the digitized speech waveform at the end of the speech production part of the speech chain can be anywhere from 64,000 to more than 700,000 bps.
+[s06].	We arrive at such numbers by examining the sampling rate and quantization required to represent the speech signal with a desired perceptual fidelity.
+[s07].	For example, ¡§telephone quality¡¨ requires that a bandwidth of 0¡V4 kHz be preserved, implying a sampling rate of 8000 samples/s.
+[s08].	Each sample can be quantized with 8 bits on a log scale, resulting in a bit rate of 64,000 bps.
+[s09].	This representation is highly intelligible (i.e., humans can readily extract the message from it) but to most listeners, it will sound different from the original speech signal uttered by the talker.
+[s10].	On the other hand, the speech waveform can be represented with ¡§CD quality¡¨ using a sampling rate of 44,100 samples/s with 16 bit samples, or a data rate of 705,600 bps.
+[s11].	In this case, the reproduced acoustic signal will be virtually indistinguishable from the original speech signal.
+</p>
+<p>
+[s00].	As we move from text to speech waveform through the speech chain, the result is an encoding of the message that can be effectively transmitted by acoustic wave propagation and robustly decoded by the hearing mechanism of a listener.
+[s01].	The above analysis of data rates shows that as we move from text to sampled speech waveform, the data rate can increase by a factor of 10,000.
+[s02].	Part of this extra information represents characteristics of the talker such as emotional state, speech mannerisms, accent, etc., but much of it is due to the inefficiency of simply sampling and finely quantizing analog signals.
+[s03].	Thus, motivated by an awareness of the low intrinsic information rate of speech, a central theme of much of digital speech processing is to obtain a digital representation with lower data rate than that of the sampled waveform.
+</p>
+<p>
+[s00].	The complete speech chain consists of a speech production/ generation model, of the type discussed above, as well as a speech perception/recognition model, as shown progressing to the left in the bottom half of Figure 1.2.
+[s01].	The speech perception model shows the series of steps from capturing speech at the ear to understanding the message encoded in the speech signal.
+[s02].	The first step is the effective conversion of the acoustic waveform to a spectral representation.
+[s03].	This is done within the inner ear by the basilar membrane, which acts as a non-uniform spectrum analyzer by spatially separating the spectral components of the incoming speech signal and thereby analyzing them by what amounts to a non-uniform filter bank.
+[s04].	The next step in the speech perception process is a neural transduction of the spectral features into a set of sound features (or distinctive features as they are referred to in the area of linguistics) that can be decoded and processed by the brain.
+[s05].	The next step in the process is a conversion of the sound features into the set of phonemes, words, and sentences associated with the in-coming message by a language translation process in the human brain.
+[s06].	Finally, the last step in the speech perception model is the conversion of the phonemes, words and sentences of the message into an understanding of the meaning of the basic message in order to be able to respond to or take some appropriate action.
+[s07].	Our fundamental understanding of the processes in most of the speech perception modules in Figure 1.2 is rudimentary at best, but it is generally agreed that some physical correlate of each of the steps in the speech perception model occur within the human brain, and thus the entire model is useful for thinking about the processes that occur.
+
+</p>
+<p>
+[s00].	There is one additional process shown in the diagram of the complete speech chain in Figure 1.2 that we have not discussed ¡X namely the transmission channel between the speech generation and speech perception parts of the model.
+[s01].	In its simplest embodiment, this transmission channel consists of just the acoustic wave connection between a speaker and a listener who are in a common space.
+[s02].	It is essential to include this transmission channel in our model for the speech chain since it includes real world noise and channel distortions that make speech and message understanding more difficult in real communication environments.
+[s03].	More interestingly for our purpose here ¡X it is in this domain that we find the applications of digital speech processing.
+</p>
+
+</s>
+<s>
+1.2 Applications of Digital Speech Processing
+<p>
+The first step in most applications of digital speech processing is to
+convert the acoustic waveform to a sequence of numbers. Most modern
+A-to-D converters operate by sampling at a very high rate, applying a
+digital lowpass filter with cutoff set to preserve a prescribed bandwidth,
+and then reducing the sampling rate to the desired sampling rate, which
+can be as low as twice the cutoff frequency of the sharp-cutoff digital
+filter. This discrete-time representation is the starting point for most
+applications. From this point, other representations are obtained by
+digital processing. For the most part, these alternative representations
+are based on incorporating knowledge about the workings of the speech
+chain as depicted in Figure 1.2. As we will see, it is possible to incorporate
+aspects of both the speech production and speech perception
+process into the digital representation and processing. It is not an oversimplification
+to assert that digital speech processing is grounded in a
+set of techniques that have the goal of pushing the data rate of the
+speech representation to the left along either the upper or lower path
+in Figure 1.2.
+</p>
+<p>
+The remainder of this chapter is devoted to a brief summary of the
+applications of digital speech processing, i.e., the systems that people
+interact with daily. Our discussion will confirm the importance of the
+digital representation in all application areas.
+</p>
+<p>
+1.2.1 Speech Coding
+Perhaps the most widespread applications of digital speech processing
+technology occur in the areas of digital transmission and storage
+of speech signals. In these areas the centrality of the digital representation
+is obvious, since the goal is to compress the digital waveform
+representation of speech into a lower bit-rate representation. It
+is common to refer to this activity as ¡§speech coding¡¨ or ¡§speech
+compression.¡¨
+</p>
+<p>
+Figure 1.3 shows a block diagram of a generic speech encoding/
+decoding (or compression) system. In the upper part of the figure,
+the A-to-D converter converts the analog speech signal xc(t) to a sampled
+waveform representation x[n]. The digital signal x[n] is analyzed
+and coded by digital computation algorithms to produce a new digital
+signal y[n] that can be transmitted over a digital communication channel
+or stored in a digital storage medium as ?y[n]. As we will see, there
+are a myriad of ways to do the encoding so as to reduce the data rate
+over that of the sampled and quantized speech waveform x[n]. Because
+the digital representation at this point is often not directly related to
+the sampled speech waveform, y[n] and ?y[n] are appropriately referred
+to as data signals that represent the speech signal. The lower path in
+Figure 1.3 shows the decoder associated with the speech coder. The
+received data signal ?y[n] is decoded using the inverse of the analysis
+processing, giving the sequence of samples ?x[n] which is then converted
+(using a D-to-A Converter) back to an analog signal ?xc(t) for human
+listening. The decoder is often called a synthesizer because it must
+reconstitute the speech waveform from data that may bear no direct
+relationship to the waveform.
+</p>
+<p>
+With carefully designed error protection coding of the digital
+representation, the transmitted (y[n]) and received (?y[n]) data can be
+essentially identical. This is the quintessential feature of digital coding.
+In theory, perfect transmission of the coded digital representation is
+possible even under very noisy channel conditions, and in the case of
+digital storage, it is possible to store a perfect copy of the digital representation
+in perpetuity if sufficient care is taken to update the storage
+medium as storage technology advances. This means that the speech
+signal can be reconstructed to within the accuracy of the original coding
+for as long as the digital representation is retained. In either case,
+the goal of the speech coder is to start with samples of the speech signal
+and reduce (compress) the data rate required to represent the speech
+signal while maintaining a desired perceptual fidelity. The compressed
+representation can be more efficiently transmitted or stored, or the bits
+saved can be devoted to error protection.
+</p>
+<p>
+Speech coders enable a broad range of applications including narrowband
+and broadband wired telephony, cellular communications,
+voice over internet protocol (VoIP) (which utilizes the internet as
+a real-time communications medium), secure voice for privacy and
+encryption (for national security applications), extremely narrowband
+communications channels (such as battlefield applications using high
+frequency (HF) radio), and for storage of speech for telephone answering
+machines, interactive voice response (IVR) systems, and prerecorded
+messages. Speech coders often utilize many aspects of both
+the speech production and speech perception processes, and hence may
+not be useful for more general audio signals such as music. Coders that
+are based on incorporating only aspects of sound perception generally
+do not achieve as much compression as those based on speech production,
+but they are more general and can be used for all types of audio
+signals. These coders are widely deployed in MP3 and AAC players and
+for audio in digital television systems [120].
+</p>
+<p>
+1.2.2 Text-to-Speech Synthesis
+
+For many years, scientists and engineers have studied the speech production
+process with the goal of building a system that can start with
+text and produce speech automatically. In a sense, a text-to-speech
+synthesizer such as depicted in Figure 1.4 is a digital simulation of the
+entire upper part of the speech chain diagram. The input to the system
+is ordinary text such as an email message or an article from a newspaper
+or magazine. The first block in the text-to-speech synthesis system,
+labeled linguistic rules, has the job of converting the printed text input
+into a set of sounds that the machine must synthesize. The conversion
+from text to sounds involves a set of linguistic rules that must determine
+the appropriate set of sounds (perhaps including things like emphasis,
+pauses, rates of speaking, etc.) so that the resulting synthetic speech
+will express the words and intent of the text message in what passes
+for a natural voice that can be decoded accurately by human speech
+perception. This is more difficult than simply looking up the words in
+a pronouncing dictionary because the linguistic rules must determine
+how to pronounce acronyms, how to pronounce ambiguous words like
+read, bass, object, how to pronounce abbreviations like St. (street or
+Saint), Dr. (Doctor or drive), and how to properly pronounce proper
+names, specialized terms, etc. Once the proper pronunciation of the
+text has been determined, the role of the synthesis algorithm is to create
+the appropriate sound sequence to represent the text message in
+the form of speech. In essence, the synthesis algorithm must simulate
+the action of the vocal tract system in creating the sounds of speech.
+There are many procedures for assembling the speech sounds and compiling
+them into a proper sentence, but the most promising one today is
+called ¡§unit selection and concatenation.¡¨ In this method, the computer
+stores multiple versions of each of the basic units of speech (phones, half
+phones, syllables, etc.), and then decides which sequence of speech units
+sounds best for the particular text message that is being produced. The
+basic digital representation is not generally the sampled speech wave.
+Instead, some sort of compressed representation is normally used to
+save memory and, more importantly, to allow convenient manipulation
+of durations and blending of adjacent sounds. Thus, the speech synthesis
+algorithm would include an appropriate decoder, as discussed in
+Section 1.2.1, whose output is converted to an analog representation
+via the D-to-A converter.
+</p>
+<p>
+Text-to-speech synthesis systems are an essential component of
+modern human¡Vmachine communications systems and are used to do
+things like read email messages over a telephone, provide voice output
+from GPS systems in automobiles, provide the voices for talking
+agents for completion of transactions over the internet, handle call center
+help desks and customer care applications, serve as the voice for
+providing information from handheld devices such as foreign language
+phrasebooks, dictionaries, crossword puzzle helpers, and as the voice of
+announcement machines that provide information such as stock quotes,
+airline schedules, updates on arrivals and departures of flights, etc.
+Another important application is in reading machines for the blind,
+where an optical character recognition system provides the text input
+to a speech synthesis system.
+</p>
+<p>
+1.2.3 Speech Recognition and Other Pattern Matching Problems
+
+Another large class of digital speech processing applications is concerned
+with the automatic extraction of information from the speech
+signal. Most such systems involve some sort of pattern matching.
+Figure 1.5 shows a block diagram of a generic approach to pattern
+matching problems in speech processing. Such problems include the
+following: speech recognition, where the object is to extract the message
+from the speech signal; speaker recognition, where the goal is
+to identify who is speaking; speaker verification, where the goal is
+to verify a speaker¡¦s claimed identity from analysis of their speech
+signal; word spotting, which involves monitoring a speech signal for
+the occurrence of specified words or phrases; and automatic indexing
+of speech recordings based on recognition (or spotting) of spoken
+keywords.
+</p>
+<p>
+The first block in the pattern matching system converts the analog
+speech waveform to digital form using an A-to-D converter. The
+feature analysis module converts the sampled speech signal to a set
+of feature vectors. Often, the same analysis techniques that are used
+in speech coding are also used to derive the feature vectors. The final
+block in the system, namely the pattern matching block, dynamically
+time aligns the set of feature vectors representing the speech signal with
+a concatenated set of stored patterns, and chooses the identity associated
+with the pattern which is the closest match to the time-aligned set
+of feature vectors of the speech signal. The symbolic output consists
+of a set of recognized words, in the case of speech recognition, or the
+identity of the best matching talker, in the case of speaker recognition,
+or a decision as to whether to accept or reject the identity claim of a
+speaker in the case of speaker verification.
+</p>
+<p>
+Although the block diagram of Figure 1.5 represents a wide range
+of speech pattern matching problems, the biggest use has been in the
+area of recognition and understanding of speech in support of human¡V
+machine communication by voice. The major areas where such a system
+finds applications include command and control of computer software,
+voice dictation to create letters, memos, and other documents, natural
+language voice dialogues with machines to enable help desks and
+call centers, and for agent services such as calendar entry and update,
+address list modification and entry, etc.
+</p>
+<p>
+Pattern recognition applications often occur in conjunction with
+other digital speech processing applications. For example, one of the
+preeminent uses of speech technology is in portable communication
+devices. Speech coding at bit rates on the order of 8 Kbps enables normal
+voice conversations in cell phones. Spoken name speech recognition
+in cellphones enables voice dialing capability that can automatically
+dial the number associated with the recognized name. Names from
+directories with upwards of several hundred names can readily be recognized
+and dialed using simple speech recognition technology.
+</p>
+<p>
+Another major speech application that has long been a dream
+of speech researchers is automatic language translation. The goal of
+language translation systems is to convert spoken words in one language
+to spoken words in another language so as to facilitate natural
+language voice dialogues between people speaking different languages.
+Language translation technology requires speech synthesis systems that
+work in both languages, along with speech recognition (and generally
+natural language understanding) that also works for both languages;
+hence it is a very difficult task and one for which only limited progress
+has been made. When such systems exist, it will be possible for people
+speaking different languages to communicate at data rates on the order
+of that of printed text reading!
+</p>
+<p>
+1.2.4 Other Speech Applications
+
+The range of speech communication applications is illustrated in
+Figure 1.6. As seen in this figure, the techniques of digital speech
+processing are a key ingredient of a wide range of applications that
+include the three areas of transmission/storage, speech synthesis, and
+speech recognition as well as many others such as speaker identification,
+speech signal quality enhancement, and aids for the hearing- or visuallyimpaired.
+</p>
+<p>
+The block diagram in Figure 1.7 represents any system where time
+signals such as speech are processed by the techniques of DSP. This
+figure simply depicts the notion that once the speech signal is sampled,
+it can be manipulated in virtually limitless ways by DSP techniques.
+Here again, manipulations and modifications of the speech signal are
+usually achieved by transforming the speech signal into an alternative
+representation (that is motivated by our understanding of speech production
+and speech perception), operating on that representation by
+further digital computation, and then transforming back to the waveform
+domain, using a D-to-A converter.
+</p>
+<p>
+One important application area is speech enhancement, where the
+goal is to remove or suppress noise or echo or reverberation picked up by
+a microphone along with the desired speech signal. In human-to-human
+communication, the goal of speech enhancement systems is to make the
+speech more intelligible and more natural; however, in reality the best
+that has been achieved so far is less perceptually annoying speech that
+essentially maintains, but does not improve, the intelligibility of the
+noisy speech. Success has been achieved, however, in making distorted
+speech signals more useful for further processing as part of a speech
+coder, synthesizer, or recognizer. An excellent reference in this area is
+the recent textbook by Loizou [72].
+</p>
+<p>
+Other examples of manipulation of the speech signal include
+timescale modification to align voices with video segments, to modify
+voice qualities, and to speed-up or slow-down prerecorded speech
+(e.g., for talking books, rapid review of voice mail messages, or careful
+scrutinizing of spoken material).
+</p>
+</s>
+
+<s>
+1.3 Our Goal for this Text
+
+We have discussed the speech signal and how it encodes information
+for human communication. We have given a brief overview of the way
+in which digital speech processing is being applied today, and we have
+hinted at some of the possibilities that exist for the future. These and
+many more examples all rely on the basic principles of digital speech
+processing, which we will discuss in the remainder of this text. We
+make no pretense of exhaustive coverage. The subject is too broad and
+too deep. Our goal is only to provide an up-to-date introduction to this
+fascinating field. We will not be able to go into great depth, and we will
+not be able to cover all the possible applications of digital speech processing
+techniques. Instead our focus is on the fundamentals of digital
+speech processing and their application to coding, synthesis, and recognition.
+This means that some of the latest algorithmic innovations and
+applications will not be discussed ¡X not because they are not interesting,
+but simply because there are so many fundamental tried-and-true
+techniques that remain at the core of digital speech processing. We
+hope that this text will stimulate readers to investigate the subject in
+greater depth using the extensive set of references provided.
+</s>
+
+<s>
+</s>
+
+
+
+</c>

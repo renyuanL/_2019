@@ -1,0 +1,77 @@
+<b>Introduction to Digital Speech Processing
+by Lawrence R. Rabiner and Ronald W. Schafer
+
+<a>Abstract
+Since even before the time of Alexander Graham Bell¡¦s revolutionary invention, engineers and scientists have studied the phenomenon of speech communication with an eye on creating more efficient and effective systems of human-to-human and human-to-machine communication.
+
+Starting in the 1960s, digital signal processing (DSP), assumed a central role in speech studies, and today DSP is the key to realizing the fruits of the knowledge that has been gained through decades of research.
+
+Concomitant advances in integrated circuit technology and computer architecture have aligned to create a technological environment with virtually limitless opportunities for innovation in speech communication applications.
+
+In this text, we highlight the central role of DSP techniques in modern speech communication research and applications.
+
+We present a comprehensive overview of digital speech processing that ranges from the basic nature of the speech signal, through a variety of methods of representing speech in digital form, to applications in voice communication and automatic synthesis and recognition of speech.
+
+The breadth of this subject does not allow us to discuss any aspect of speech processing to great depth; hence our goal is to provide a useful introduction to the wide range of important concepts that comprise the field of digital speech processing.
+
+A more comprehensive treatment will appear in the forthcoming book, Theory and Application of Digital Speech Processing [101].
+</a>
+<c>	1.	Introduction
+1.1	The Speech Chain
+1.2	Applications of Digital Speech Processing
+</c>
+<c>	2.	The Speech Signal
+2.1	Phonetic Representation of Speech
+2.2	Models for Speech Production
+</c>
+<c>	3.	Hearing and Auditory Perception
+3.1	The Human Ear
+3.2	Perception of Loudness
+3.3	Critical Bands
+3.4	Pitch Perception
+3.5	Auditory Masking
+3.6	Complete Model of Auditory Processing
+</c>
+<c>	4.	Short-Time Analysis of Speech
+4.1	Short-time energy and Zero-Crossing rate
+4.2	Short-time Autocorrelation Function (STACF)
+4.3	Short-time Fourier Transform (STFT)
+4.4	Sampling the STFT in Time and Frequency
+4.5	The Speech Spectrogram
+</c>
+<c>	5.	Homomorphic Speech Analysis
+5.1	Cepstrum 
+5.2	Short-time Cepstrum
+5.3	Computation of Cepstrum
+5.4	Hormomorphic Filtering of Speech
+5.5	Application to Pitch Detection and Pattern Recognition
+</c>
+<c>	6.	Linear Predictive Analysis
+6.1	Linear Prediction and the Speech Model
+6.2	Computing the Linear Prediction Coefficients (LPC)
+6.2.1	The Levinson-Durbin Recursion
+6.3	LPC Spectrum
+6.4	Equivalent Representations
+</c>
+<c>	7.	Digital Speech Coding
+7.1	Sampling and Quantization of Speech
+7.2	Digital Speech Coding
+7.3	Closed-Loop Coders
+7.4	Open-Loop Coders
+7.5	Frequency-Domain Coders
+7.6	Evaluation of Coders
+</c>
+<c>	8.	Text-to-Speech Synthesis Methods (TTS)
+8.1	Text Analysis
+8.2	Evolution of Speech Synthesis Systems
+8.3	Unit Selection Methods
+8.4	TTS Applications
+</c>
+<c>	9.	Automatic Speech Recognition (ASR)
+9.1	The Problem of Automatic Speech Recognition
+9.2	Building a Speech Recognition System
+9.3	The Decision Process in ASR
+9.4	Representative Recognition Performance
+9.5	Challenges in ASR Technology
+</c>
+</b>

@@ -1,0 +1,43 @@
+﻿Introduction to Digital Speech Processing
+
+Lawrence R. Rabiner
+
+and Ronald W. Schafer
+
+
+Abstract
+
+Since even before the time 
+of Alexander Graham Bell’s revolutionary invention, 
+engineers and scientists have studied the phenomenon 
+of speech communication 
+with an eye on creating more efficient and effective systems 
+of human-to-human and human-to-machine communication. 
+
+Starting in the 1960s, 
+digital signal processing (DSP), 
+assumed a central role in speech studies, 
+and today DSP is the key to realizing the fruits of the knowledge 
+that has been gained through decades of research. 
+
+Concomitant advances in integrated circuit technology and computer architecture 
+have aligned to create a technological environment 
+with virtually limitless opportunities 
+for innovation in speech communication applications. 
+
+In this text, 
+we highlight the central role of DSP techniques 
+in modern speech communication research and applications. 
+
+We present a comprehensive overview of digital speech processing 
+that ranges from the basic nature of the speech signal, 
+through a variety of methods of representing speech in digital form, 
+to applications in voice communication 
+and automatic synthesis and recognition of speech. 
+
+The breadth of this subject does not allow us to discuss any aspect of speech processing to great depth; 
+hence our goal is to provide a useful introduction 
+to the wide range of important concepts that comprise the ﬁeld of digital speech processing. 
+
+A more comprehensive treatment will appear in the forthcoming book, 
+Theory and Application of Digital Speech Processing.
